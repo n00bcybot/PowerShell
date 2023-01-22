@@ -10,5 +10,3 @@ function Gimme-Date {
 	return $ttt
 
 }
-
-Gimme-Date -date 
