@@ -25,7 +25,7 @@ function Get-HostNames {
             if ((Test-Connection $i -count 1).status -eq "Success" ){$hostnames += "$i"}
             }                                          
             $domain = $hostnames | ForEach-Object -Parallel {
-                invoke-command -HostName $_ -ScriptBlock {Get-CimInstance -namespace root/cimv2 -classname CIM_ComputerSystem} -ErrorAction SilentlyContinue | sort -Descending
+                Invoke-command -HostName $_ -ScriptBlock {Get-CimInstance -namespace root/cimv2 -classname CIM_ComputerSystem} -ErrorAction SilentlyContinue | sort -Descending
             }
      $domain
             
