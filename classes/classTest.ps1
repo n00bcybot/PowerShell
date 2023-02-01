@@ -13,19 +13,18 @@ $sessionname
 $sessionid = $session.Id
 write-host "`n"
 
-if ($sessionid -ne $null){
+if ($null -ne $sessionid){
 $entersession = Read-Host -Prompt " Enter session? [Y/N]"
 
 if ("Y" -in $entersession) {
-    write "`n"
-    write "Connecting..."
+    Write-Host "`n"
+    Write-Host "Connecting..."
     Enter-PSSession $session
-    if (Test-Connection $computername){write "Connected!"}
+    if (Test-Connection $computername){Write-Host "Connected!"}
     }elseif ("Y" -notin $entersession){
-           write-host "`n"
-           write " Session $sessionid with host `"$computername`" is open!"
+            Write-Host "`n"
+           Write-Host " Session $sessionid with host `"$computername`" is open!"
           }
     }
 }
-
 
