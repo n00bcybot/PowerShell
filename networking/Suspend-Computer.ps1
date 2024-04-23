@@ -15,5 +15,3 @@ Invoke-Command -Session $session {
     $state = [System.Windows.Forms.PowerState]::Suspend
     [System.Windows.Forms.Application]::SetSuspendState($state, $false, $false) | Out-Null
 }
-
-Get-PSsession | Remove-PSSession | Out-Null
