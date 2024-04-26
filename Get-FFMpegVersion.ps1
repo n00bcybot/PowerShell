@@ -1,4 +1,6 @@
-if (Get-Command ffmpeg){
+try 
+{
+    Get-Command ffmpeg -ErrorAction Stop
     $check_code = ffmpeg -version
     $check_code[0] -match "git-(.*?)-full" | Out-Null
     $code = $Matches.1 + ":"
@@ -6,6 +8,8 @@ if (Get-Command ffmpeg){
     $version = $get_version.Content -match "..."
     $version = $Matches.Values
     $version
-}else {
-    Write-Host "FFMpeg was not found in the system path" -ForegroundColor Red
+}
+catch 
+{
+    Write-Error "FFMpeg was not found in the system path"
 }

@@ -5,21 +5,22 @@ function Add-EnvironmentVariable {
     [switch]$ToUserEnvironment,
     [switch]$AsFirstEntry
     )
-    if ($ToSystemEnvironment){
+    if ($ToSystemEnvironment) {
          $envmachine = [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine)
-         if($AsFirstEntry){
-              [Environment]::SetEnvironmentVariable("Path", $(($Variable + ";") + $envmachine), [EnvironmentVariableTarget]::Machine) 
-         }else{
-         [Environment]::SetEnvironmentVariable("Path", $($envmachine + $Variable + ";"), [EnvironmentVariableTarget]::Machine)
+         if($AsFirstEntry) {
+               [Environment]::SetEnvironmentVariable("Path", $(($Variable + ";") + $envmachine), [EnvironmentVariableTarget]::Machine) 
+         }
+         else {
+               [Environment]::SetEnvironmentVariable("Path", $(";" + $envmachine + $Variable), [EnvironmentVariableTarget]::Machine)
          }
     }
-    if ($ToUserEnvironment){
+    elseif ($ToUserEnvironment) {
          $envuser = [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::User)
-         if($AsFirstEntry){
+         if($AsFirstEntry) {
               [Environment]::SetEnvironmentVariable("Path", $(($Variable + ";") + $envuser), [EnvironmentVariableTarget]::User) 
-         }else{
-         [Environment]::SetEnvironmentVariable("Path", $($envuser + $Variable + ";"), [EnvironmentVariableTarget]::User)
+         }
+         else {
+               [Environment]::SetEnvironmentVariable("Path", $(";" + $envuser + $Variable), [EnvironmentVariableTarget]::User)
          }
     }
-
 }
