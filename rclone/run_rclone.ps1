@@ -1,0 +1,1 @@
+start rclone -argumentlist "mount gdrive: G: --vfs-cache-mode writes --network-mode --links" -WindowStyle Hidden
